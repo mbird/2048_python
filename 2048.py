@@ -10,13 +10,20 @@ def merge(line):
     for i in range(len(line)):
         result.append(0)
 
-    j = 0 # indes for result list
+    j = 0 # index for result list
+    merged = False
     for i in range(len(line)):
         if line[i] != 0:
-            result[j] = line[i] 
+            result[j] = line[i]
+            if j > 0 and result[j] == result[j-1] and merged == False:
+                    result[j-1] += result[j]
+                    result.pop(j)
+                    result.append(0)
+                    merged = True
+                    j -= 1
             j += 1
        
-            
+  
             
     
     print line
@@ -25,4 +32,4 @@ def merge(line):
     
     return []
 
-merge([2,0,0,0,2,4])
+merge([2, 0, 2, 4])
