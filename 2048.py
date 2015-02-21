@@ -10,26 +10,24 @@ def merge(line):
     for i in range(len(line)):
         result.append(0)
 
+    merged = list(result) # list for keeping track which tiles have been merged
+        
     j = 0 # index for result list
-    merged = False
     for i in range(len(line)):
         if line[i] != 0:
             result[j] = line[i]
-            if j > 0 and result[j] == result[j-1] and merged == False:
+            if j > 0 and result[j] == result[j-1] and merged[j-1] != True:
                     result[j-1] += result[j]
                     result.pop(j)
                     result.append(0)
-                    merged = True
+                    merged[j-1] = True
                     j -= 1
             j += 1
        
   
-            
+  
     
-    print line
-    print result
-    
-    
-    return []
+    return result
 
-merge([2, 0, 2, 4])
+print merge([2, 2, 2, 2])
+print merge([2, 0, 2, 4])
