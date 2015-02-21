@@ -7,22 +7,22 @@ def merge(line):
     Function that merges a single row or column in 2048.
     """
     result = []
-    for i in range(len(line)):
+    for ind in range(len(line)):
         result.append(0)
 
     merged = list(result) # list for keeping track which tiles have been merged
         
-    j = 0 # index for result list
-    for i in range(len(line)):
-        if line[i] != 0:
-            result[j] = line[i]
-            if j > 0 and result[j] == result[j-1] and merged[j-1] != True:
-                    result[j-1] += result[j]
-                    result.pop(j)
+    jind = 0 # index for result list
+    for ind in range(len(line)):
+        if line[ind] != 0:
+            result[jind] = line[ind]
+            if jind > 0 and result[jind] == result[jind-1] and merged[jind-1] != True:
+                    result[jind-1] += result[jind]
+                    result.pop(jind)
                     result.append(0)
-                    merged[j-1] = True
-                    j -= 1
-            j += 1
+                    merged[jind-1] = True
+                    jind -= 1
+            jind += 1
        
   
   
