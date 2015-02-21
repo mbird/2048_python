@@ -17,9 +17,9 @@ def merge(line):
         if line[ind] != 0:
             result[jind] = line[ind]
             if jind > 0 and result[jind] == result[jind-1] and merged[jind-1] != True:
-                    result[jind-1] += result[jind]
-                    result.pop(jind)
-                    result.append(0)
+                    result[jind-1] += result[jind] # merge tiles
+                    result.pop(jind) # remove second of the merged numbers
+                    result.append(0) # fill up list to former length
                     merged[jind-1] = True
                     jind -= 1
             jind += 1
