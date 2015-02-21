@@ -29,5 +29,3 @@ def merge(line):
     
     return result
 
-print merge([2, 2, 2, 2])
-print merge([2, 0, 2, 4])
