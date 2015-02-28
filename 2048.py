@@ -59,7 +59,8 @@ class TwentyFortyEight:
         """
         # list comprehension for creating grid
         self.grid = [[x * 0 for x in range(self.grid_width)] for y in range(self.grid_height)]
-        TwentyFortyEight.new_tile(self)
+        TwentyFortyEight.new_tile(self) # first tile
+        TwentyFortyEight.new_tile(self) # second tile
 
     def __str__(self):
         """
@@ -99,8 +100,20 @@ class TwentyFortyEight:
         square.  The tile should be 2 90% of the time and
         4 10% of the time.
         """
-        self.grid[random.randrange(self.grid_height)][random.randrange(self.grid_width)] = 3
+        tile_created = False        
+        while tile_created == False:
+            rnd_row = random.randrange(self.grid_height)
+            rnd_col = random.randrange(self.grid_width)
+            rnd = random.random()
+            # when tile is 0, insert 2 or 4
+            if self.grid[rnd_row][rnd_col] == 0:
+                if  rnd <= 0.9:
+                    self.grid[rnd_row][rnd_col] = 2
+                else:
+                    self.grid[rnd_row][rnd_col] = 4
+                tile_created = True
         
+                
 
     def set_tile(self, row, col, value):
         """
@@ -119,7 +132,7 @@ class TwentyFortyEight:
 
 #poc_2048_gui.run_gui(TwentyFortyEight(4, 4))
 
-#grid = TwentyFortyEight(5, 4)
-#print grid
+grid = TwentyFortyEight(5, 4)
+print grid
 #print TwentyFortyEight.get_grid_height(grid)
 #print TwentyFortyEight.get_grid_width(grid)
