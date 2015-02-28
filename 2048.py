@@ -49,35 +49,39 @@ class TwentyFortyEight:
     def __init__(self, grid_height, grid_width):
         self.grid_height = grid_height
         self.grid_width = grid_width
+        TwentyFortyEight.reset(self)
 
     def reset(self):
         """
         Reset the game so the grid is empty except for two
         initial tiles.
         """
+        # list comprehension for creating grid
         self.grid = [[x * 0 for x in range(self.grid_width)] for y in range(self.grid_height)]
 
     def __str__(self):
         """
         Return a string representation of the grid for debugging.
         """
+        grid_rep = ""
         for row in self.grid:
-            print row
-        return ""
+            grid_rep += str(row) + "\n"
+            
+        return grid_rep
 
     def get_grid_height(self):
         """
         Get the height of the board.
         """
-        # replace with your code
-        return 0
+        
+        return self.grid_heigth
 
     def get_grid_width(self):
         """
         Get the width of the board.
         """
-        # replace with your code
-        return 0
+        
+        return self.grid_width
 
     def move(self, direction):
         """
@@ -111,4 +115,7 @@ class TwentyFortyEight:
         return 0
 
 
-poc_2048_gui.run_gui(TwentyFortyEight(4, 4))
+#poc_2048_gui.run_gui(TwentyFortyEight(4, 4))
+
+grid = TwentyFortyEight(4, 4)
+print grid
