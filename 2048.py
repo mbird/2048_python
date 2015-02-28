@@ -3,6 +3,7 @@ Clone of 2048 game.
 """
 
 import poc_2048_gui
+import random
 
 # Directions, DO NOT MODIFY
 UP = 1
@@ -50,7 +51,7 @@ class TwentyFortyEight:
         self.grid_height = grid_height
         self.grid_width = grid_width
         TwentyFortyEight.reset(self)
-
+        
     def reset(self):
         """
         Reset the game so the grid is empty except for two
@@ -58,6 +59,7 @@ class TwentyFortyEight:
         """
         # list comprehension for creating grid
         self.grid = [[x * 0 for x in range(self.grid_width)] for y in range(self.grid_height)]
+        TwentyFortyEight.new_tile(self)
 
     def __str__(self):
         """
@@ -74,7 +76,7 @@ class TwentyFortyEight:
         Get the height of the board.
         """
         
-        return self.grid_heigth
+        return self.grid_height
 
     def get_grid_width(self):
         """
@@ -97,8 +99,8 @@ class TwentyFortyEight:
         square.  The tile should be 2 90% of the time and
         4 10% of the time.
         """
-        # replace with your code
-        pass
+        self.grid[random.randrange(self.grid_height)][random.randrange(self.grid_width)] = 3
+        
 
     def set_tile(self, row, col, value):
         """
@@ -117,5 +119,7 @@ class TwentyFortyEight:
 
 #poc_2048_gui.run_gui(TwentyFortyEight(4, 4))
 
-grid = TwentyFortyEight(4, 4)
-print grid
+#grid = TwentyFortyEight(5, 4)
+#print grid
+#print TwentyFortyEight.get_grid_height(grid)
+#print TwentyFortyEight.get_grid_width(grid)
