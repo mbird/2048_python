@@ -58,7 +58,7 @@ class TwentyFortyEight:
         initial tiles.
         """
         # list comprehension for creating grid
-        self.grid = [[x * 0 for x in range(self.grid_width)] for y in range(self.grid_height)]
+        self.grid = [[x * 0 for x in range(self.grid_width)] for x in range(self.grid_height)]
         TwentyFortyEight.new_tile(self) # first tile
         TwentyFortyEight.new_tile(self) # second tile
 
@@ -100,7 +100,8 @@ class TwentyFortyEight:
         square.  The tile should be 2 90% of the time and
         4 10% of the time.
         """
-        tile_created = False        
+        tile_created = False
+        # There seems to be a problem with OWLTEST regarding this while loop
         while tile_created == False:
             rnd_row = random.randrange(self.grid_height)
             rnd_col = random.randrange(self.grid_width)
