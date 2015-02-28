@@ -47,22 +47,22 @@ class TwentyFortyEight:
     """
 
     def __init__(self, grid_height, grid_width):
-        # replace with your code
-        pass
+        self.grid_height = grid_height
+        self.grid_width = grid_width
 
     def reset(self):
         """
         Reset the game so the grid is empty except for two
         initial tiles.
         """
-        # replace with your code
-        pass
+        self.grid = [[x * 0 for x in range(self.grid_width)] for y in range(self.grid_height)]
 
     def __str__(self):
         """
         Return a string representation of the grid for debugging.
         """
-        # replace with your code
+        for row in self.grid:
+            print row
         return ""
 
     def get_grid_height(self):
