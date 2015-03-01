@@ -133,8 +133,10 @@ class TwentyFortyEight:
         """
         Set the tile at position row, col to have the given value.
         """
-        # replace with your code
-        pass
+        self.row = row
+        self.col = col
+        self.value = value
+        self.grid[self.row-1][self.col-1] = self.value
 
     def get_tile(self, row, col):
         """
@@ -146,7 +148,9 @@ class TwentyFortyEight:
 
 #poc_2048_gui.run_gui(TwentyFortyEight(4, 4))
 
-#grid = TwentyFortyEight(5, 4)
-#print grid
+grid = TwentyFortyEight(5, 4)
+print grid
+grid.set_tile(5, 4, 8)
+print grid
 #print TwentyFortyEight.get_grid_height(grid)
 #print TwentyFortyEight.get_grid_width(grid)
