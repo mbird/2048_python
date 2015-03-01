@@ -136,21 +136,26 @@ class TwentyFortyEight:
         self.row = row
         self.col = col
         self.value = value
+        # reduce self.row and self.col by 1, otherwise lsit index out of range
         self.grid[self.row-1][self.col-1] = self.value
 
     def get_tile(self, row, col):
         """
         Return the value of the tile at position row, col.
         """
-        # replace with your code
-        return 0
+        self.row = row
+        self.col = col
+        return self.grid[self.row-1][self.col-1]
 
 
 #poc_2048_gui.run_gui(TwentyFortyEight(4, 4))
 
 grid = TwentyFortyEight(5, 4)
 print grid
-grid.set_tile(5, 4, 8)
+grid.set_tile(3, 3, 8)
 print grid
+grid.new_tile()
+print grid
+print grid.get_tile(3,3)
 #print TwentyFortyEight.get_grid_height(grid)
 #print TwentyFortyEight.get_grid_width(grid)
