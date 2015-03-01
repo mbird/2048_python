@@ -48,17 +48,17 @@ class TwentyFortyEight:
     """
 
     def __init__(self, grid_height, grid_width):
-        self.grid_height = grid_height
-        self.grid_width = grid_width
+        self._grid_height = grid_height
+        self._grid_width = grid_width
         # compute list of indices for initial tiles for each direction
-        up_ind = [(0, j) for j in range(self.grid_width)]
+        up_ind = [(0, j) for j in range(self._grid_width)]
         print up_ind
-        down_ind = [(self.grid_height-1, j) for j in range(self.grid_width)]
+        down_ind = [(self._grid_height-1, j) for j in range(self._grid_width)]
         print down_ind
-        left_ind = [(i, 0) for i in range(self.grid_height)]
+        left_ind = [(i, 0) for i in range(self._grid_height)]
         print left_ind
-        right_ind = [(i, self.grid_width-1) for i in range(self.grid_height)]
-        self.initial_tiles = {UP : up_ind, DOWN : down_ind, LEFT : left_ind, RIGHT : right_ind}
+        right_ind = [(i, self._grid_width-1) for i in range(self._grid_height)]
+        self._initial_tiles = {UP : up_ind, DOWN : down_ind, LEFT : left_ind, RIGHT : right_ind}
         TwentyFortyEight.reset(self)
         
     def reset(self):
@@ -67,7 +67,7 @@ class TwentyFortyEight:
         initial tiles.
         """
         # list comprehension for creating grid
-        self.grid = [[x * 0 for x in range(self.grid_width)] for x in range(self.grid_height)]
+        self._grid = [[x * 0 for x in range(self._grid_width)] for x in range(self._grid_height)]
         TwentyFortyEight.new_tile(self) # first tile
         TwentyFortyEight.new_tile(self) # second tile
 
@@ -76,7 +76,7 @@ class TwentyFortyEight:
         Return a string representation of the grid for debugging.
         """
         grid_rep = ""
-        for row in self.grid:
+        for row in self._grid:
             grid_rep += str(row) + "\n"
             
         return grid_rep
@@ -86,44 +86,44 @@ class TwentyFortyEight:
         Get the height of the board.
         """
         
-        return self.grid_height
+        return self._grid_height
 
     def get_grid_width(self):
         """
         Get the width of the board.
         """
         
-        return self.grid_width
+        return self._grid_width
 
     def move(self, direction):
         """
         Move all tiles in the given direction and add
         a new tile if any tiles moved.
         """
-        self.direction = direction
+        self._direction = direction
         tile_values =[]
-        if self.direction == UP or self.direction == DOWN:
-            for tile in self.initial_tiles[(self.direction)]:
-                for step in range(self.grid_height):
+        if self._direction == UP or self._direction == DOWN:
+            for tile in self._initial_tiles[(self._direction)]:
+                for step in range(self._grid_height):
 #                    print tile
-                    row = tile[0] + step * OFFSETS[(self.direction)][0]
-                    col = tile[1] + step * OFFSETS[(self.direction)][1]
+                    row = tile[0] + step * OFFSETS[(self._direction)][0]
+                    col = tile[1] + step * OFFSETS[(self._direction)][1]
 #                    print "Processing cell", (row, col), 
-#                    print "with value", self.grid[row][col] 
-                    tile_values.append(self.grid[row][col])
+#                    print "with value", self._grid[row][col] 
+                    tile_values.append(self._grid[row][col])
                 print tile_values
                 merged_tiles = merge(tile_values)
                 print merged_tiles
                 tile_values = []
                     
         else:
-            for tile in self.initial_tiles[(self.direction)]:
-                for step in range(self.grid_width):
+            for tile in self._initial_tiles[(self._direction)]:
+                for step in range(self._grid_width):
 #                    print tile
-                    row = tile[0] + step * OFFSETS[(self.direction)][0]
-                    col = tile[1] + step * OFFSETS[(self.direction)][1]
+                    row = tile[0] + step * OFFSETS[(self._direction)][0]
+                    col = tile[1] + step * OFFSETS[(self._direction)][1]
                     print "Processing cell", (row, col), 
-                    print "with value", self.grid[row][col]   
+                    print "with value", self._grid[row][col]   
                 
 #        for step in range(num_steps):
 #        row = start_cell[0] + step * direction[0]
@@ -143,24 +143,24 @@ class TwentyFortyEight:
         empty_tile = False
         
         # check for empty tile
-        for row in self.grid:
+        for row in self._grid:
             if 0 in row:
                 empty_tile = True
                 break
         
         while tile_created == False and empty_tile == True:
-            rnd_row = random.randrange(self.grid_height)
-            rnd_col = random.randrange(self.grid_width)
+            rnd_row = random.randrange(self._grid_height)
+            rnd_col = random.randrange(self._grid_width)
             rnd = random.random()
             # when tile is 0, insert 2 or 4
-            if self.grid[rnd_row][rnd_col] == 0:
+            if self._grid[rnd_row][rnd_col] == 0:
                 if  rnd <= 0.9:
-                    self.grid[rnd_row][rnd_col] = 2
+                    self._grid[rnd_row][rnd_col] = 2
                 else:
-                    self.grid[rnd_row][rnd_col] = 4
+                    self._grid[rnd_row][rnd_col] = 4
                 tile_created = True
             # check if an empty tile is left
-            for row in self.grid:
+            for row in self._grid:
                 if 0 in row:
                     break
                 else:
@@ -172,37 +172,37 @@ class TwentyFortyEight:
         """
         Set the tile at position row, col to have the given value.
         """
-        self.row = row
-        self.col = col
-        self.value = value
-        # reduce self.row and self.col by 1, otherwise lsit index out of range
-        self.grid[self.row-1][self.col-1] = self.value
+        self._row = row
+        self._col = col
+        self._value = value
+        # reduce self._row and self._col by 1, otherwise lsit index out of range
+        self._grid[self._row-1][self._col-1] = self._value
 
     def get_tile(self, row, col):
         """
         Return the value of the tile at position row, col.
         """
-        self.row = row
-        self.col = col
-        return self.grid[self.row-1][self.col-1]
+        self._row = row
+        self._col = col
+        return self._grid[self._row-1][self._col-1]
 
 
 #poc_2048_gui.run_gui(TwentyFortyEight(4, 4))
 
-grid = TwentyFortyEight(5, 4)
-print grid
-grid.set_tile(3, 3, 8)
-print grid
-grid.new_tile()
-print grid
-print grid.get_tile(3,3)
-print "UP"
-grid.move(UP)
-print "DOWN"
-grid.move(DOWN)
-print "LEFT"
-grid.move(LEFT)
-print "RIGHT"
-grid.move(RIGHT)
+#grid = TwentyFortyEight(5, 4)
+#print grid
+#grid.set_tile(3, 3, 8)
+#print grid
+#grid.new_tile()
+#print grid
+#print grid.get_tile(3,3)
+#print "UP"
+#grid.move(UP)
+#print "DOWN"
+#grid.move(DOWN)
+#print "LEFT"
+#grid.move(LEFT)
+#print "RIGHT"
+#grid.move(RIGHT)
 #print TwentyFortyEight.get_grid_height(grid)
 #print TwentyFortyEight.get_grid_width(grid)
