@@ -101,8 +101,15 @@ class TwentyFortyEight:
         4 10% of the time.
         """
         tile_created = False
-        # There seems to be a problem with OWLTEST regarding this while loop
-        while tile_created == False:
+        empty_tile = False
+        
+        # check for empty tile
+        for row in self.grid:
+            if 0 in row:
+                empty_tile = True
+                break
+        
+        while tile_created == False and empty_tile == True:
             rnd_row = random.randrange(self.grid_height)
             rnd_col = random.randrange(self.grid_width)
             rnd = random.random()
@@ -113,6 +120,12 @@ class TwentyFortyEight:
                 else:
                     self.grid[rnd_row][rnd_col] = 4
                 tile_created = True
+            # check if an empty tile is left
+            for row in self.grid:
+                if 0 in row:
+                    break
+                else:
+                    empty_tile = False
         
                 
 
@@ -133,7 +146,7 @@ class TwentyFortyEight:
 
 #poc_2048_gui.run_gui(TwentyFortyEight(4, 4))
 
-grid = TwentyFortyEight(5, 4)
-print grid
+#grid = TwentyFortyEight(5, 4)
+#print grid
 #print TwentyFortyEight.get_grid_height(grid)
 #print TwentyFortyEight.get_grid_width(grid)
