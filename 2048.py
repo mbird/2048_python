@@ -50,6 +50,12 @@ class TwentyFortyEight:
     def __init__(self, grid_height, grid_width):
         self.grid_height = grid_height
         self.grid_width = grid_width
+        # compute list of indices for initial tiles for each direction
+        up_ind = [(0, j) for j in range(self.grid_width)]
+        down_ind = [(self.grid_height-1, j) for j in range(self.grid_width)]
+        left_ind = [(i, 0) for i in range(self.grid_height)]
+        right_ind = [(i, self.grid_width-1) for i in range(self.grid_height)]
+        initial_tiles = {UP : up_ind, DOWN : down_ind, LEFT : left_ind, RIGHT : right_ind}
         TwentyFortyEight.reset(self)
         
     def reset(self):
@@ -91,8 +97,12 @@ class TwentyFortyEight:
         Move all tiles in the given direction and add
         a new tile if any tiles moved.
         """
-        # replace with your code
-        pass
+#        self.direction = direction
+#        if self.direction == LEFT:
+#            for row in self.grid:
+#                self.merge(row)
+#        elif self.direction == RIGHT:
+            
 
     def new_tile(self):
         """
