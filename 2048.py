@@ -100,7 +100,7 @@ class TwentyFortyEight:
         self._direction = direction
         tile_values =[]
         tiles_moved = False
-        if self._direction == UP or self._direction == DOWN:
+        if self._direction == UP:
             for tile in self._initial_tiles[(self._direction)]:
                 for step in range(self._grid_height):
                     row = tile[0] + step * OFFSETS[(self._direction)][0]
@@ -120,9 +120,29 @@ class TwentyFortyEight:
             if tiles_moved == True:
                 TwentyFortyEight.new_tile(self)
             merged_tiles = []                
-                
+        
+        elif self._direction == DOWN:
+            for tile in self._initial_tiles[(self._direction)]:
+                for step in range(self._grid_height):
+                    row = tile[0] + step * OFFSETS[(self._direction)][0]
+                    col = tile[1] + step * OFFSETS[(self._direction)][1]
+                    tile_values.append(self._grid[row][col])
+                print tile_values
+                merged_tiles = merge(tile_values)[::-1] # reverse order of merged tiles
+                print merged_tiles
+                tile_values = []
+                # check whether tiles have moved; if so add new tile
+                if tile_values != merged_tiles:
+                    tiles_moved = True
+                for step in range(self._grid_height):
+                    row = tile[0] + step * OFFSETS[(self._direction)][0]
+                    col = tile[1] + step * OFFSETS[(self._direction)][1]
+                    self._grid[row][col] = merged_tiles[row]
+            if tiles_moved == True:
+                TwentyFortyEight.new_tile(self)
+            merged_tiles = []                
                     
-        else:
+        elif self._direction == LEFT:
             for tile in self._initial_tiles[(self._direction)]:
                 for step in range(self._grid_width):
                     row = tile[0] + step * OFFSETS[(self._direction)][0]
@@ -130,6 +150,27 @@ class TwentyFortyEight:
                     tile_values.append(self._grid[row][col])
                 print tile_values
                 merged_tiles = merge(tile_values)
+                print merged_tiles
+                tile_values = []
+                # check whether tiles have moved; if so add new tile
+                if tile_values != merged_tiles:
+                    tiles_moved = True
+                for step in range(self._grid_width):
+                    row = tile[0] + step * OFFSETS[(self._direction)][0]
+                    col = tile[1] + step * OFFSETS[(self._direction)][1]
+                    self._grid[row][col] = merged_tiles[col]
+            if tiles_moved == True:
+                TwentyFortyEight.new_tile(self)
+            merged_tiles = []  
+            
+        elif self._direction == RIGHT:
+            for tile in self._initial_tiles[(self._direction)]:
+                for step in range(self._grid_width):
+                    row = tile[0] + step * OFFSETS[(self._direction)][0]
+                    col = tile[1] + step * OFFSETS[(self._direction)][1]
+                    tile_values.append(self._grid[row][col])
+                print tile_values
+                merged_tiles = merge(tile_values)[::-1] # reverse order of merged tiles
                 print merged_tiles
                 tile_values = []
                 # check whether tiles have moved; if so add new tile
@@ -203,26 +244,28 @@ class TwentyFortyEight:
 
 grid = TwentyFortyEight(4, 4)
 print grid
+print "Set (3,3) to 2"
 grid.set_tile(3, 3, 2)
 print grid
+print "Add new tile"
 grid.new_tile()
 print grid
 print grid.get_tile(3,3)
-print "UP"
-grid.move(UP)
-print "\n"
-print grid
+#print "UP"
+#grid.move(UP)
+#print "\n"
+#print grid
 print "DOWN"
 grid.move(DOWN)
 print "\n"
 print grid
-print "LEFT"
-grid.move(LEFT)
-print "\n"
-print grid
+#print "LEFT"
+#grid.move(LEFT)
+#print "\n"
+#print grid
 print "RIGHT"
 grid.move(RIGHT)
 print "\n"
 print grid
-print TwentyFortyEight.get_grid_height(grid)
-print TwentyFortyEight.get_grid_width(grid)
+#print TwentyFortyEight.get_grid_height(grid)
+#print TwentyFortyEight.get_grid_width(grid)
