@@ -106,9 +106,7 @@ class TwentyFortyEight:
                     row = tile[0] + step * OFFSETS[(self._direction)][0]
                     col = tile[1] + step * OFFSETS[(self._direction)][1]
                     tile_values.append(self._grid[row][col])
-                print tile_values
                 merged_tiles = merge(tile_values)
-                print merged_tiles
                 tile_values = []
                 # check whether tiles have moved; if so add new tile
                 if tile_values != merged_tiles:
@@ -127,12 +125,10 @@ class TwentyFortyEight:
                     row = tile[0] + step * OFFSETS[(self._direction)][0]
                     col = tile[1] + step * OFFSETS[(self._direction)][1]
                     tile_values.append(self._grid[row][col])
-                print tile_values
                 merged_tiles = merge(tile_values)[::-1] # reverse order of merged tiles
-                print merged_tiles
                 tile_values = []
                 # check whether tiles have moved; if so add new tile
-                if tile_values != merged_tiles:
+                if tile_values[::-1] != merged_tiles:
                     tiles_moved = True
                 for step in range(self._grid_height):
                     row = tile[0] + step * OFFSETS[(self._direction)][0]
@@ -148,9 +144,7 @@ class TwentyFortyEight:
                     row = tile[0] + step * OFFSETS[(self._direction)][0]
                     col = tile[1] + step * OFFSETS[(self._direction)][1]
                     tile_values.append(self._grid[row][col])
-                print tile_values
                 merged_tiles = merge(tile_values)
-                print merged_tiles
                 tile_values = []
                 # check whether tiles have moved; if so add new tile
                 if tile_values != merged_tiles:
@@ -169,12 +163,10 @@ class TwentyFortyEight:
                     row = tile[0] + step * OFFSETS[(self._direction)][0]
                     col = tile[1] + step * OFFSETS[(self._direction)][1]
                     tile_values.append(self._grid[row][col])
-                print tile_values
                 merged_tiles = merge(tile_values)[::-1] # reverse order of merged tiles
-                print merged_tiles
                 tile_values = []
                 # check whether tiles have moved; if so add new tile
-                if tile_values != merged_tiles:
+                if tile_values[::-1] != merged_tiles:
                     tiles_moved = True
                 for step in range(self._grid_width):
                     row = tile[0] + step * OFFSETS[(self._direction)][0]
@@ -242,30 +234,50 @@ class TwentyFortyEight:
 
 #poc_2048_gui.run_gui(TwentyFortyEight(4, 4))
 
-grid = TwentyFortyEight(4, 4)
-print grid
-print "Set (3,3) to 2"
-grid.set_tile(3, 3, 2)
-print grid
-print "Add new tile"
-grid.new_tile()
-print grid
-print grid.get_tile(3,3)
+#grid = TwentyFortyEight(4, 4)
+#print grid
+#print "Set (3,3) to 2"
+#grid.set_tile(3, 3, 2)
+#print grid
+#print "Add new tile"
+#grid.new_tile()
+#print grid
+#print grid.get_tile(3,3)
 #print "UP"
 #grid.move(UP)
 #print "\n"
 #print grid
-print "DOWN"
-grid.move(DOWN)
-print "\n"
-print grid
+#print "DOWN"
+#grid.move(DOWN)
+#print "\n"
+#print grid
 #print "LEFT"
 #grid.move(LEFT)
 #print "\n"
 #print grid
-print "RIGHT"
-grid.move(RIGHT)
-print "\n"
-print grid
+#print "RIGHT"
+#grid.move(RIGHT)
+#print "\n"
+#print grid
 #print TwentyFortyEight.get_grid_height(grid)
 #print TwentyFortyEight.get_grid_width(grid)
+
+#obj = TwentyFortyEight(4, 4)
+#obj.set_tile(0, 0, 2) 
+#obj.set_tile(0, 1, 0) 
+#obj.set_tile(0, 2, 0) 
+#obj.set_tile(0, 3, 0) 
+#obj.set_tile(1, 0, 0)
+#obj.set_tile(1, 1, 2) 
+#obj.set_tile(1, 2, 0) 
+#obj.set_tile(1, 3, 0) 
+#obj.set_tile(2, 0, 0) 
+#obj.set_tile(2, 1, 0) 
+#obj.set_tile(2, 2, 2) 
+#obj.set_tile(2, 3, 0) 
+#obj.set_tile(3, 0, 0) 
+#obj.set_tile(3, 1, 0) 
+#obj.set_tile(3, 2, 0) 
+#obj.set_tile(3, 3, 2) 
+#obj.move(UP)
+#print obj
