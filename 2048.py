@@ -188,7 +188,7 @@ class TwentyFortyEight:
         self._col = col
         self._value = value
         # reduce self._row and self._col by 1, otherwise lsit index out of range
-        self._grid[self._row-1][self._col-1] = self._value
+        self._grid[self._row][self._col] = self._value
 
     def get_tile(self, row, col):
         """
@@ -196,31 +196,33 @@ class TwentyFortyEight:
         """
         self._row = row
         self._col = col
-        return self._grid[self._row-1][self._col-1]
+        return self._grid[self._row][self._col]
 
 
 #poc_2048_gui.run_gui(TwentyFortyEight(4, 4))
 
-grid = TwentyFortyEight(5, 4)
+grid = TwentyFortyEight(4, 4)
 print grid
-grid.set_tile(3, 3, 8)
+grid.set_tile(3, 3, 2)
 print grid
-#grid.new_tile()
-#print grid
-#print grid.get_tile(3,3)
+grid.new_tile()
+print grid
+print grid.get_tile(3,3)
 print "UP"
 grid.move(UP)
 print "\n"
 print grid
-#print "DOWN"
-#grid.move(DOWN)
-#print "\n"
-#print grid
-#print "LEFT"
-#grid.move(LEFT)
-#print "\n"
-#print grid
-#print "RIGHT"
-#grid.move(RIGHT)
-#print TwentyFortyEight.get_grid_height(grid)
-#print TwentyFortyEight.get_grid_width(grid)
+print "DOWN"
+grid.move(DOWN)
+print "\n"
+print grid
+print "LEFT"
+grid.move(LEFT)
+print "\n"
+print grid
+print "RIGHT"
+grid.move(RIGHT)
+print "\n"
+print grid
+print TwentyFortyEight.get_grid_height(grid)
+print TwentyFortyEight.get_grid_width(grid)
